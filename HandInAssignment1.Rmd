@@ -83,14 +83,14 @@ FEVplot <- ggplot(lungcap, aes(FEV)) +
            geom_density(fill="yellow", alpha=0.1)+ 
            geom_vline(aes(xintercept=mean(FEV)), color="orange", linetype="solid", size=1) + 
            geom_vline(aes(xintercept=median(FEV)), color="purple", linetype="solid", size=1) +
-           ggtitle("Density Plot with Mean and Median Line ") +
+           ggtitle("Density Plot (mean & median line) ") +
            xlab("FEV (Forced expiratory volume in liters)") + 
            ylab("Density")
 logFEVplot <- ggplot(lungcap, aes(log(FEV))) + 
               geom_density(fill="yellow", alpha=0.1)+ 
               geom_vline(aes(xintercept=mean(log(FEV))), color="orange", linetype="solid", size=1) + 
               geom_vline(aes(xintercept=median(log(FEV))), color="purple", linetype="solid", size=1) +
-              ggtitle("Density Plot with Mean and Median Line ") +
+              ggtitle("Density Plot (mean & median line)") +
               xlab("logFEV (Forced expiratory volume in liters)") + 
               ylab("Density")
 grid.arrange(FEVplot, logFEVplot, ncol = 2, nrow = 1)
@@ -116,7 +116,7 @@ summary(original_lung_model)
 *i. `Estimate`*
 
 > The estimate \((\hat{\beta})\) is the extimated regression coefficient and describes the relationship between a specific predictor variable and the response variable when all other predictor variables in the linear model are held constant and the specific predictor variavle is changed by one unit (For instance from \(x_j\) to \(x_{j+1}\)). 
-> Formally the best OLS estimate can be expressed as \(\hat{\beta} = (X^T X)^{-1}X^T Y\). Where \($Y$\) is an (\($n \times 1$\)) vector of response variables (random sample),\($X$\) is an \((n \times
+> Formally the best OLS estimate can be expressed as \(\hat{\beta} = (X^T X)^{-1}X^T Y\). Where \(Y\) is an (\(n \times 1\)) vector of response variables (random sample),\(X\) is an \((n \times
 2)\) matrix called the design matrix,
 
 >In our model the response variable is the forced expiratory volume in liters, `FEV`, a measurement for lung capacity. The model estimates the effect of age, gender, height and smoking habits on the lung capacity.
@@ -145,7 +145,7 @@ summary(original_lung_model)
 > In general, the standard error here tells us that we can be 95% confident that our observed sample mean lays within an interval of plus or minus 1.96 standard error from the population mean. This interval is called the 95% confidence interval. 
 
 > Formally expressed the 95% confidence interval is computed as follows: 
-$(estimate - 1.96*SE, estimate + 1.96*SE)$
+$(estimate - 1.96*SE,\ estimate + 1.96*SE)$
 
 *iii. `Residual standard error`*
 
@@ -157,7 +157,7 @@ $(estimate - 1.96*SE, estimate + 1.96*SE)$
 
 *iv. `F-statistic`*
 
-> The F-test estimates whether there is a relationship between the predictor and response variables of the model. The standard errors mentioned in 2.2.ii. take on an important role when it comes to hypothesis testing. In a traditional hypothesis test a null hypothesis \(H_0\) is tested against an alternative hypothesis \(H_1\). In this case an example for the null hypothesis would be that there is no relationship between the response `FEV` and the predictors `Age`, `Htcm`, `Gender` and `Smoke`:
+> The F-test estimates whether there is a relationship between the predictor and response variables of the model. The standard errors mentioned in *2.2.ii.* take on an important role when it comes to hypothesis testing. In a traditional hypothesis test a null hypothesis \(H_0\) is tested against an alternative hypothesis \(H_1\). In this case an example for the null hypothesis would be that there is no relationship between the response `FEV` and the predictors `Age`, `Htcm`, `Gender` and `Smoke`:
 
 > $$H_0: \beta_1 = \beta_2 = ... = \beta_j= \beta_p = 0$$
 
@@ -192,7 +192,7 @@ $(estimate - 1.96*SE, estimate + 1.96*SE)$
 > When controlling for a single regressor, the hypothesis test can be used to determine whether there is a relationship between the regressor and the dependent variable. 
 In that case our null hypothesis is as follows: 
 
-> $$H_0: \hat{beta_1}  = 0$$
+> $$H_0:\hat{\beta_1}  = 0$$
 
 > And the alternative hypothesis then would be: 
 
@@ -204,7 +204,7 @@ In that case our null hypothesis is as follows:
 
 > with $\hat{\beta_1}$ being the estimate for $\beta_1$ and $SE(\hat{\beta_1})$ being the standard error of that estimate. 
 
-> Based on the t-statistic a p-value can be calculated. The p-value is the probability of achieving a |t| as large as or larger than the observed absolute t value if the null hypothesis was true, where \(H_0\) is \(\hat_{\beta_i}=0\):
+> Based on the t-statistic a p-value can be calculated. The p-value is the probability of achieving a |t| as large as or larger than the observed absolute t value if the null hypothesis was true, where \(H_0\) is \(\hat{\beta_i}=0\):
 $${ \text{p-value}}=Pr_{H0}(|t|>|t^{act}|)$$
 
 > At a 5% significance level the hypothesis is rejected in the case that the actual t-value is bigger than 1.96 or the equivalent p-value is less than 0.05. Here the hypothesis stated above can be rejected for all of the coefficients, because all of the t-values are bigger than 1.96.  
@@ -351,7 +351,8 @@ summary(glm_tennis)
 
 *i. Are the estimated coefficients for `x1` and `x2` statistically significant?*                         
 
-> The estimated coefficients for `x1` and `x2` are both statistically significant at a significance level of <0.001. So we can reject the null hypotheses of both estimates being equal to zero. Therefore, it is safe to say that the quality statistics of both players have an effect on the results of the games.                                                                                                  
+> The estimated coefficients for `x1` and `x2` are both statistically significant at a significance level of <0.001. So we can reject the null hypotheses of both estimates being equal to zero. Therefore, it is safe to say that the quality statistics of both players have an effect on the results of the games.    
+
 *ii. Just by looking at the two coefficients: What is the effect on `y` if both `x1` and `x2` increase by one?*
 
 ```{r}
@@ -391,7 +392,7 @@ prediction
 >$$\text{odds ratio} = \frac{ \text{probability of success for player one}}{ 1- \text{probability of success for player one}}$$
 
 
-> The odds-ratio is the probability of success for player one divided by the probability of failure for player one. The predicted probability of success for player one is 0.3829 (38.29%) and the probability of failure for player one is 0.617 (61.7%). The odds-ration is 0.3829/0.617=0.620483. This is equivalent to the statement that approximately six successes face ten failures. 
+> The odds-ratio is the probability of success for player one divided by the probability of failure for player one. The predicted probability of success for player one is 0.3829 (38.29%) and the probability of failure for player one is 0.617 (61.7%). The odds-ratio is \(\frac{ \text{0.3829}}{\text{0.617}}=\text{0.620483}\). This is equivalent to the statement that approximately six successes face ten failures. 
 
 ```{r}
 predited_probability <- prediction$success
@@ -406,7 +407,7 @@ actual_result
 actual_result == predicted_result
 ```
 
-> The predicted probability by the logistic regression of player one winning the game is equal to 38.29%. That means the model predicts an outcome of y = 0 which means that player one will lose the game. The actual result of the game was that player one lost. That means the model successfully predicted the actual outcome. 
+> The predicted probability by the logistic regression of player one winning the game is equal to 38.29%. That means the model predicts an outcome of \(\text{y}=\text{0}\) which means that player one will lose the game. The actual result of the game was that player one lost. That means the model successfully predicted the actual outcome. 
 
 
 ## Task 2.3
@@ -736,7 +737,7 @@ knn_mod_cv %>%
   
 
 ```
-> Quantity can be interpreted as the ratio of predicted outcomes and true outcomes for each k in all folds of the data. For `k` being 29, we get the smallest CV error mean. Looking for the most parsimonious model, `k` being 5 still satisfies the one-standard error-rule.
+> Quantity can be interpreted as the ratio of predicted outcomes and true outcomes for each `k` in all folds of the data. For `k` being 29, we get the smallest CV error mean. Looking for the most parsimonious model, `k` being 5 still satisfies the one-standard error-rule.
 
 
 ### Task 2.9
@@ -765,7 +766,7 @@ ggplot2::ggplot() +
   theme_classic()
 ```
 
-> Generally speaking we call this observation the bias-variance trade-off: On the one hand, if the value of `K` is too low, it will give a very flexible classifier that goes along with high variance and low bias and that fits the training set too well (overfitting). The predictions on test data set then won't be especially good. On the other hand, if the value of `K` is too high, the opposite will be true: The classifier will have low flexibility with low variance and high bias. The classifier will consider the general distribution of the observations and not only the nearest points. This makes the predictions more resilient to outliers. As can be seen in the plot with a higher number of nearest neighbors the misclassification error will increase.
+> Generally speaking we call this observation the bias-variance trade-off: On the one hand, if the value of `k` is too low, it will give a very flexible classifier that goes along with high variance and low bias and that fits the training set too well (overfitting). The predictions on test data set then won't be especially good. On the other hand, if the value of `k` is too high, the opposite will be true: The classifier will have low flexibility with low variance and high bias. The classifier will consider the general distribution of the observations and not only the nearest points. This makes the predictions more resilient to outliers. As can be seen in the plot with a higher number of nearest neighbors the misclassification error will increase.
 
 > The KNN-method gives a noisy estimate of the test error for each possible model. The model with the best estimate will be selected. By selecting the model with the smallest estimated error, the true error is often bigger than the selected one. This leads to an underestimated test error and hence the test error curve lies below the CV misclassification error curve.  
 
@@ -874,7 +875,7 @@ data_grid %>%
 ```
 
 
-> When it comes to finding the optimal number of K's in the KNN approach, a visualization of different numbers of neighbors `k` can help. As can be seen in our computations with the different k values, with an increasing number of k's the decision boundary becomes a relatively straight line and therefore gets less noisy. At the same time decision boundary gets less flexible. It is not useful to increase the number of `k` to 500, because the number of nearest neighbour would exceed the actual number of 394 data points in the training set. In a model in which we would use the maximum number of nearest neighbours (393), the classification boundry would always predict a win for Player 1.
+> When it comes to finding the optimal number of `k` in the KNN approach, a visualization of different numbers of neighbors `k` can help. As can be seen in our computations with the different `k` values, with an increasing number of `k` the decision boundary becomes a relatively straight line and therefore gets less noisy. At the same time decision boundary gets less flexible. It is not useful to increase the number of `k` to 500, because the number of nearest neighbour would exceed the actual number of 394 data points in the training set. In a model in which we would use the maximum number of nearest neighbours (393), the classification boundary would always predict a win for Player 1.
 
 
 
@@ -1173,6 +1174,7 @@ ggplot(diamonds, aes(x = log(carat), y = log(price))) +
   ggtitle('Log: Diamond price vs. carat')
 
 ```
+
 > The highest prices in the data set are 18787\$, 18757\$ and 18735\$. The mean weight of all diamonds in the data set is 0.7923304 carat. The most prevalent color is G.
 
 ## Task 4.2
@@ -1216,21 +1218,21 @@ max(bss_summary)
 ```
 > Computing the forward and backward selection approach, gives us 8 best predictors as printer above. The plots show the possible coefficients and their corresponding Mallow's `Cp`, if added, which should be minimized. Both methods suggest the same predictors as the best subset of all available predictors.
 
-> If we use the adjusted R-squared value as our decision criterion the best subset would consist of 8 predictors as it can be seen in the plot. The djusted R-squared for the best subset is equal to 0.9781214. That means the best subset can explain 97.81% of the variance in the response variable `log_price`.  
+> If we use the adjusted R-squared value as our decision criterion the best subset would consist of 8 predictors as it can be seen in the plot. The adjusted R-squared for the best subset is equal to 0.9781214. That means the best subset can explain 97.81% of the variance in the response variable `log_price`.  
 
 
 ## Task 4.3
 
 *What are the main differences between using adjusted R² for model selection and using cross-validation (with mean squared test error, i.e. MSE)?*
 
-> The adjusted `R^2` is a commonly known tool when it comes to evaluating how well a model fits the actual data. 
+> The adjusted R-squared is a commonly known tool when it comes to evaluating how well a model fits the actual data. 
 
-> Formally expressed the `R^2` for a least squares model with d variables is the following: 
+> Formally expressed the adjusted R-squared for a least squares model with d variables is the following: 
 $$\text{Adjusted R}^2=1-\frac{RSS/(n-d-1)}{TSS/(n-1)}$$
 
-> A high adjusted `R_2` means that the test error is small. This is different for alternative approaches such as `C_p`, `AIC` and `BIC`, where a small error would be indicated by a small value. 
+> A high adjusted R-squared means that the test error is small. This is different for alternative approaches such as `Cp`, `AIC` and `BIC`, where a small error would be indicated by a small value. 
 
-> The cross-validation-approach calculates an error for each model and selects the `k` with the smallest estimated test error. One advantage of this approach towards the adjusted `R^2` is that an estimate of the error variance here is not required. Furthermore it makes few assumptions about the true model and can be used in complex cases where the degrees of freedom cannot be identified. On the other hand, the adjusted `R^2` is commonly known among most scientists and is easy to interpret. 
+> The cross-validation-approach calculates an error for each model and selects the `k` with the smallest estimated test error. One advantage of this approach towards the adjusted R-squared is that an estimate of the error variance here is not required. Furthermore it makes few assumptions about the true model and can be used in complex cases where the degrees of freedom cannot be identified. On the other hand, the adjusted R-squared is commonly known among most scientists and is easy to interpret. 
 
 
 
