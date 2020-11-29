@@ -1,8 +1,8 @@
 ---
 title: 'Problem Set 1: Linear Methods'
-author: "Anastasia Suckau (440938)
-         Lisa Büx (441574)
-         Jan-Luka Scheewel (518556)"
+author: "Lisa Büx (441574)
+         Jan-Luka Scheewel (518556)
+         Anastasia Suckau (440938)"
 date: "2020-11-13 till 2020-11-29"
 output:
   html_document:
