@@ -1,7 +1,7 @@
 ---
 title: 'Problem Set 1: Linear Methods'
-author: "Lisa Büx (441574)
-         Jan-Luka Scheewel (518556)
+author: "Lisa Büx (441574),
+         Jan-Luka Scheewel (518556),
          Anastasia Suckau (440938)"
 date: "2020-11-13 till 2020-11-29"
 output:
@@ -68,7 +68,7 @@ summary(lung_model)
 ## Task 1.1 
 *Write down the generic linear regression equation as well as the specific equation for the fitted `lung_model` including the point estimates for the coefficients.*
 
-> The generic linear regression equation is given as: $$Y_i = a + bX_i$$ , where X is the explanatory variable and Y is the dependent variable. 
+> The generic linear regression equation is given as: $$Y_i = a + bX_i$$  where `X` is the explanatory variable and `Y is the dependent variable. 
 
 > The specific equation for the fitted `lung_model` is given by: $$log(FEV_i)= \beta_0 + \beta_1*Age_i + \beta_2*Htcm_i + \beta_3*Gender_i +\beta_4*Smoke_i + \epsilon_i$$ 
 
@@ -115,21 +115,21 @@ summary(original_lung_model)
 
 *i. `Estimate`*
 
-> The estimate \((\hat{\beta})\) is the extimated regression coefficient and describes the relationship between a specific predictor variable and the response variable when all other predictor variables in the linear model are held constant and the specific predictor variavle is changed by one unit (For instance from \(x_j\) to \(x_{j+1}\)). 
-> Formally the best OLS estimate can be expressed as \(\hat{\beta} = (X^T X)^{-1}X^T Y\). Where \(Y\) is an (\(n \times 1\)) vector of response variables (random sample),\(X\) is an \((n \times
+> The estimate \((\hat{\beta})\) is the extimated regression coefficient and describes the relationship between a specific predictor variable and the response variable when all other predictor variables in the linear model are held constant and the specific predictor variable is changed by one unit (for instance from \(x_j\) to \(x_{j+1}\)). 
+> Formally the best OLS estimate can be expressed as \(\hat{\beta} = (X^T X)^{-1}X^T Y\). Where \(Y\) is an (\(n \times 1\)) vector of response variables (random sample), \(X\) is an \((n \times
 2)\) matrix called the design matrix,
 
 >In our model the response variable is the forced expiratory volume in liters, `FEV`, a measurement for lung capacity. The model estimates the effect of age, gender, height and smoking habits on the lung capacity.
 
 >1. estimate for the variable `Age` (continous): 
 
->  + log of `FEV`: The coefficient estimate for the explanatory variable `Age` is equal to 0.023387 for the transformed data. That means, if `Age` is increased by one unit (year) the expiratory volume increases by approximately 2.3387% (= $100*\hat{\beta} \%$) on average.
+>  + log of `FEV`: The coefficient estimate for the explanatory variable `Age` is equal to 0.023387 for the transformed data. That means, if `Age` is increased by one unit (year) the expiratory volume increases by approximately 2.3387% ($100*\hat{\beta} \%$) on average.
 
 >  + original scale of `FEV`: The coefficient estimate for the explanatory variable `Age` is equal to 0.065509 for the original scale of `FEV`. That means, if `Age` is increased by one unit (year) the expiratory volume increases by 0.065509 liter on average.
 
 > 2. estimate for the variable `Smoker` (dummy variable): 
 
->  + log of `FEV`: The coefficient estimate for the explanatory variable `Smoke` is equal to -0.046067 for the transformed data. That means if the subject smokes the dummy variable takes on the value 1 and therefore its forced expiratory volume decreases by  approximately 4.6067% (= $100*\hat{\beta} \%$) on average. Non-smokers receive the dummy variable equal to zero, which then cancels out the coefficient.
+>  + log of `FEV`: The coefficient estimate for the explanatory variable `Smoke` is equal to -0.046067 for the transformed data. That means if the subject smokes the dummy variable takes on the value 1 and therefore its forced expiratory volume decreases by  approximately 4.6067% ($100*\hat{\beta} \%$) on average. Non-smokers receive the dummy variable equal to zero, which then cancels out the coefficient.
 
 >  + original scale of `FEV`: The coefficient estimate for the explanatory variable `Smoke` is equal to -0.087246 for the original data. That means if the subject smokes the dummy variable takes on the value 1 and therefore its forced expiratory volume decreases by 0.087246 liter on average. 
 
@@ -140,7 +140,7 @@ summary(original_lung_model)
 
 > The Standard Error provides an estimate of the reliability of our coefficient estimates. The smaller the standard error of the estimate (the uncertainty), the higher the statistical significance. 
 
-> Here, the estimator `age` has a standard error of 0.003348. The variable `Htcm` has a standard error of 0.000661. With regard to the corresponding estimates (0.023387 and 0.016849) those standard errors can be interpreted as relatively small. 
+> Here, the estimator `Age` has a standard error of 0.003348. The variable `Htcm` has a standard error of 0.000661. With regard to the corresponding estimates (0.023387 and 0.016849) those standard errors can be interpreted as relatively small. 
 
 > In general, the standard error here tells us that we can be 95% confident that our observed sample mean lays within an interval of plus or minus 1.96 standard error from the population mean. This interval is called the 95% confidence interval. 
 
@@ -392,7 +392,7 @@ prediction
 >$$\text{odds ratio} = \frac{ \text{probability of success for player one}}{ 1- \text{probability of success for player one}}$$
 
 
-> The odds-ratio is the probability of success for player one divided by the probability of failure for player one. The predicted probability of success for player one is 0.3829 (38.29%) and the probability of failure for player one is 0.617 (61.7%). The odds-ratio is \(\frac{ \text{0.3829}}{\text{0.617}}=\text{0.620483}\). This is equivalent to the statement that approximately six successes face ten failures. 
+> The odds-ratio is the probability of success for player one divided by the probability of failure for player one. The predicted probability of success for player one is 0.3829 (38.29%) and the probability of failure for player one is 0.617 (61.7%). The odds-ratio is: \(\frac{ \text{0.3829}}{\text{0.617}}=\text{0.620483}\). This is equivalent to the statement that approximately six successes face ten failures. 
 
 ```{r}
 predited_probability <- prediction$success
